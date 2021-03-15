@@ -1,5 +1,6 @@
 # MovieRentalSystem
 **You must install jdk to run**
+
 **The MySQL client included in this repository is for Windows 64 bit machines**
 
   1.)On windows command line navigate to the project directory 
