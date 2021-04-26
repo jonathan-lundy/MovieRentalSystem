@@ -1,31 +1,24 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class MovieRentalSystem {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 
-		// TODO Auto-generated method stub
-		Connection dbConnection = connectToDB();
-		if(dbConnection != null)
-			System.out.println("Sucessfully connected Movie Rental System mySQL database");
-		else
-			System.out.println("Error");
+		Connection dbConnection = DriverManager.getConnection(
+        		"jdbc:mysql://localhost:3306/MovieRentalSystem",
+        		"root", "testpw");
+		
+		dbAPI api = new dbAPI(dbConnection);
+		TestAPI testAPI = new TestAPI(api);
+		
+		testAPI.TestConnection();
+		testAPI.TestCreateUser();
+		testAPI.TestIsUser();
+		testAPI.TestAddCreditCard();
+			
 		
 	}
 	
-	public static Connection connectToDB() { 
-		Connection conn = null;
-		try {
-			// MySQL format is: "jdbc:mysql://hostname:port/databaseName", "username", "password"
-	        conn = DriverManager.getConnection(
-	        		"jdbc:mysql://localhost:3306/MovieRentalSystem",
-	        		"root", "testpw"); 
-	        return conn;
-		}
-		finally {
-			return conn;
-		}
-          
-	}
 }
